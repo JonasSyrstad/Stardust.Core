@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Stardust.Nucleus.Web</RootNamespace>
+    <AssemblyName>Stardust.Nucleus.Web</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
+    <PackageReference Include="Stardust.Nucleus" Version="4.1.0-pre0005" />
+    <PackageReference Include="Stardust.Particles" Version="4.1.0-pre001" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>Stardust.Nucleus.Web</id>
+    <version>2.1.0-pre003</version>
+    <title>Stardust.Nucleus.Web</title>
+    <authors>Stardust</authors>
+    <description>mvc and webapi integration of Stardust.Nucleus</description>
+    <licenseUrl>http://stardustframework.com/license</licenseUrl>
+    <projectUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</projectUrl>
+    <iconUrl>http://stardustframework.wdfiles.com/local--files/blog%3A_start/logo_smal.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <releaseNotes>
+      Improved service registration
+      added default AppBlueprint files to the App_Start folder
+      Improved nuget installation process
+    </releaseNotes>
+    <copyright>Copyright Stardust ©  2018</copyright>
+    <frameworkAssemblies />
+    <dependencies>
+      <group>
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
+        <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
+        <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="Stardust.Continuum.Client" version="1.2.5.0" />
+        <dependency id="Stardust.Interstellar.Rest" version="3.1.0-pre0003" />
+        <dependency id="Stardust.Interstellar.Rest.Service" version="1.1.0-pre004" />
+        <dependency id="Stardust.Interstellar.Rest.Annotations" version="2.1.0-pre004" />
+        <dependency id="Stardust.Nucleus" version="4.1.0-pre0005" />
+        <dependency id="Stardust.Particles" version="4.1.0-pre001" />
+        <dependency id="WebActivatorEx" version="2.2.0" />
+        <dependency id="NETStandard.Library" version="2.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\bin\Release\Stardust.Nucleus.Web.dll" target="lib\net471" />
+    <file src=".\bin\Release\Stardust.Nucleus.Web.pdb" target="lib\net471" />
+    <file src=".\App_Start\AppBlueprint.partial.cs.temp.pp" target="content\App_Start" />
+    <file src=".\App_Start\AppBlueprint.cs.temp.pp" target="content\App_Start" />
+    <file src=".\tools\install.ps1" target="tools" exclude="" />
+  </files>
+</package>

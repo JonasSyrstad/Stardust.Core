@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Stardust.Particles</id>
+    <version>4.0.2.0.pre</version>
+    <title>Stardust.Particles</title>
+    <authors>Stardust</authors>
+    <description>Some helpers to improve readabillity of your code</description>
+    <licenseUrl>http://stardustframework.com/license</licenseUrl>
+    <projectUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</projectUrl>
+    <iconUrl>http://stardustframework.wdfiles.com/local--files/blog%3A_start/logo_smal.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <copyright>Copyright ©  2017</copyright>
+    <frameworkAssemblies />
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>

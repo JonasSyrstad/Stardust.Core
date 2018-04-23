@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>4.1.0-pre001</Version>
+    <Company>Stardust</Company>
+    <Description>Some helpers to improve readabillity of your code</Description>
+    <Copyright>Copyright © Stardust 2018</Copyright>
+    <PackageLicenseUrl>http://stardustframework.com/license</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</PackageProjectUrl>
+    <PackageIconUrl>http://stardustframework.wdfiles.com/local--files/blog%3A_start/logo_smal.png</PackageIconUrl>
+    <RepositoryType>github</RepositoryType>
+    <RepositoryUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</RepositoryUrl>
+    <PackageTags>Helpers</PackageTags>
+    <Authors>Stardust</Authors>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
