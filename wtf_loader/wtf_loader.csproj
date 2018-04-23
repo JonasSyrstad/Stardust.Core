@@ -304,7 +304,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Stardust.Nucleus\Stardust.Nucleus.csproj">
+    <ProjectReference Include="..\Stardust.Nucleus\Stardust.Nucleus.csproj">
       <Project>{14847f6b-4439-4eab-8616-d5f73634a206}</Project>
       <Name>Stardust.Nucleus</Name>
     </ProjectReference>

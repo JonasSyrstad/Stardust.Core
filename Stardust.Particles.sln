@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stardust.Particles", "Stardust.Particles\Stardust.Particles.csproj", "{D31CB8CC-9198-42DE-ADA9-2800B85D4022}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stardust.Nucleus", "..\Stardust.Nucleus\Stardust.Nucleus.csproj", "{14847F6B-4439-4EAB-8616-D5F73634A206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stardust.Nucleus", "Stardust.Nucleus\Stardust.Nucleus.csproj", "{14847F6B-4439-4EAB-8616-D5F73634A206}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testCLI", "testCLI\testCLI.csproj", "{3500FD42-7741-43E2-B35F-2C9B556A2056}"
 EndProject
