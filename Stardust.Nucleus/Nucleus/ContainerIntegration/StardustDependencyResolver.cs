@@ -7,7 +7,7 @@ using Stardust.Nucleus.TypeResolver;
 
 namespace Stardust.Nucleus.ContainerIntegration
 {
-    internal sealed class StardustDependencyResolver : IDependencyResolver
+    internal sealed class StardustDependencyResolver : IDependencyResolver, IServiceProvider
     {
         internal StardustDependencyResolver(Func<IConfigurationKernel> kernel)
         {
@@ -29,6 +29,11 @@ namespace Stardust.Nucleus.ContainerIntegration
             var typeContext = new Internals.ScopeContext(type, _scopeContext);
             typeContext.SetScope(scope);
             return new ResolveContext<object>(typeContext, _scopeContext).Activate();
+        }
+
+        public object GetService(Type serviceType)
+        {
+            return GetService(serviceType, "default");
         }
 
         public T GetService<T>()

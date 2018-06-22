@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>4.1.0-pre001</Version>
+    <Version>5.0.0</Version>
     <Company>Stardust</Company>
     <Description>Some helpers to improve readabillity of your code</Description>
     <Copyright>Copyright © Stardust 2018</Copyright>
@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</RepositoryUrl>
     <PackageTags>Helpers</PackageTags>
     <Authors>Stardust</Authors>
-    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

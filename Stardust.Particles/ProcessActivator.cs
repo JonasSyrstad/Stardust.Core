@@ -26,6 +26,7 @@
 //
 
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Stardust.Particles
 {

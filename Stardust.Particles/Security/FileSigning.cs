@@ -53,13 +53,15 @@ namespace Stardust.Core.Security
         public static byte[] SignDocument(byte[] document, byte[] certificate)
         {
             var provider = LoadProvider(certificate);
-            return provider.SignData(document, new SHA256CryptoServiceProvider());
+            var dockHash = SHA512.Create().ComputeHash(document);
+            return provider.SignData(dockHash, new SHA256CryptoServiceProvider());
         }
 
         public static bool Validate(byte[] document, byte[] publicCertificate, byte[] signature)
         {
             var provider = LoadProvider(publicCertificate);
-            return provider.VerifyData(document, new SHA256CryptoServiceProvider(), signature);
+            var dockHash = SHA512.Create().ComputeHash(document);
+            return provider.VerifyData(dockHash, new SHA256CryptoServiceProvider(), signature);
         }
 
         public static byte[] Encrypt(byte[] document, byte[] privateCertificate)

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>4.1.0-pre0007</Version>
+    <Version>5.0.1</Version>
     <Copyright>Copyright © Stardust 2018</Copyright>
     <PackageLicenseUrl>http://stardustframework.com/license</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</PackageProjectUrl>
@@ -11,12 +11,13 @@
     <RepositoryType>github</RepositoryType>
     <PackageIconUrl>http://stardustframework.wdfiles.com/local--files/blog:_start/logo_smal.png</PackageIconUrl>
     <Description>A fast, easy to use and lightweight IOC container</Description>
-    <PackageTags>IOC DependencyInjection factory</PackageTags>
+    <PackageTags>IOC DependencyInjection DI</PackageTags>
     <Authors>Stardust</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Stardust.Particles" Version="4.1.0-pre001" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Stardust.Particles" Version="5.0.0" />
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="2.0.1" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />

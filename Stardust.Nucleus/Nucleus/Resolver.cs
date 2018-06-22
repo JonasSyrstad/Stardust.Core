@@ -27,11 +27,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Stardust.Nucleus.ContainerIntegration;
 using Stardust.Nucleus.ContextProviders;
-using Stardust.Nucleus.Extensions;
 using Stardust.Nucleus.Internals;
 using Stardust.Nucleus.ObjectActivator;
 using Stardust.Nucleus.TypeResolver;
@@ -42,6 +39,11 @@ using ScopeContext = Stardust.Nucleus.Internals.ScopeContext;
 
 namespace Stardust.Nucleus
 {
+
+    public static class ResolverKernelSettings
+    {
+
+    }
     /// <summary>
     /// Provides a fluent API to configure the ModuleCreator bindings programmaticaly.
     /// </summary>
@@ -78,7 +80,7 @@ namespace Stardust.Nucleus
         private static IConfigurator Configurator;
         private static bool HasExternalIoc;
 
-        public static void SetTransientKernel()
+        internal static void SetTransientKernel()
         {
             OptimizedKernel = false;
         }
@@ -87,7 +89,7 @@ namespace Stardust.Nucleus
         /// </summary>
         /// <param name="kernelScope">The scope to create the kernel context in</param>
         /// <returns></returns>
-        public static IKernelContext BeginKernelScope<T>(Scope kernelScope) where T : ILogging
+        internal static IKernelContext BeginKernelScope<T>(Scope kernelScope) where T : ILogging
         {
             if (kernelScope == Scope.PerRequest) throw new StardustCoreException("Cannot begin a kernel context in PerRequest scope");
             KernelScope = kernelScope;
@@ -100,7 +102,7 @@ namespace Stardust.Nucleus
         /// Creates a new kernel context within an extended scope
         /// </summary>
         /// <returns></returns>
-        public static IKernelContext BeginKernelScope<T>() where T : ILogging
+        internal static IKernelContext BeginKernelScope<T>() where T : ILogging
         {
             return BeginKernelScope<T>(Scope.Singleton);
         }
@@ -110,7 +112,7 @@ namespace Stardust.Nucleus
             return BeginKernelScope<LoggingDefaultImplementation>(kernelScope);
         }
 
-        public static IKernelContext BeginKernelScope()
+        internal static IKernelContext BeginKernelScope()
         {
             return BeginKernelScope<LoggingDefaultImplementation>();
         }
@@ -119,7 +121,7 @@ namespace Stardust.Nucleus
         /// Terminates the kernel context
         /// </summary>
         /// <param name="provider"></param>
-        public static void EndKernelScope(IKernelContext provider, bool cleanAllScopes)
+        internal static void EndKernelScope(IKernelContext provider, bool cleanAllScopes)
         {
             ((IKernelContextCommands)provider).End();
             if (cleanAllScopes)
@@ -175,80 +177,9 @@ namespace Stardust.Nucleus
         }
 
         /// <summary>
-        /// Creates an instance of the resolved type as its base type or interface
-        /// </summary>
-        //public static T Activate<T>(string named)
-        //{
-        //    return ResolverKernel.GetService<T>(named);
-        //    //return Resolve<T>(named).Activate();
-        //}
-
-        ///// <summary>
-        ///// Creates an instance of the resolved type as its base type or interface
-        ///// </summary>
-        //public static T Activate<T>(Enum selector)
-        //{
-        //    return Activate<T>(selector.ToString());
-        //}
-
-        ///// <summary>
-        ///// Creates an instance of the resolved type as its base type or interface
-        ///// </summary>
-        //public static T Activate<T>()
-        //{
-        //    return ResolverKernel.GetService<T>();
-        //}
-
-        ///// <summary>
-        ///// Creates an instance of the resolved type as its base type or interface
-        ///// </summary>
-        //public static T Activate<T>(string named, Action<T> initializer)
-        //{
-        //    return ResolverKernel.GetService<T>(named, initializer);
-        //}
-
-        ///// <summary>
-        ///// Creates an instance of the resolved type as its base type or interface
-        ///// </summary>
-        //public static T Activate<T>(Enum selector, Action<T> initializer)
-        //{
-        //    return Activate(selector.ToString(), initializer);
-        //}
-
-        ///// <summary>
-        ///// Creates an instance of the resolved type as its base type or interface
-        ///// </summary>
-        //public static T Activate<T>(Action<T> initializer)
-        //{
-        //    return ResolverKernel.GetService(initializer);
-        //}
-
-        ///// <summary>
-        ///// Resolves a implementation binding by the root class or interface
-        ///// </summary>
-        //public static T ActivateGeneric<T>(string named)
-        //{
-        //    var type = new ResolveContext<T>((IScopeContextInternal)ConfigurationKernel.Resolve(typeof(T).GetGenericTypeDefinition(), named), new ContextProviders.ScopeContext(ResolverKernel));
-        //    return type.Activate<T>();
-        //}
-
-        //public static T ActivateGeneric<T>(Enum typed)
-        //{
-        //    return ActivateGeneric<T>(typed.ToString());
-        //}
-
-        ///// <summary>
-        ///// Resolves a implementation binding by the root class or interface
-        ///// </summary>
-        //public static T ActivateGeneric<T>()
-        //{
-        //    return ActivateGeneric<T>(TypeLocatorNames.DefaultName);
-        //}
-
-        /// <summary>
         /// Lists all registered implementations of an interface
         /// </summary>
-        public static IEnumerable<KeyValuePair<string, string>> GetImplementationsOf<T>()
+        internal static IEnumerable<KeyValuePair<string, string>> GetImplementationsOf<T>()
         {
             return ConfigurationKernel.ResolveList(typeof(T));
         }
@@ -259,7 +190,7 @@ namespace Stardust.Nucleus
         /// <param name="config">an implementation of IModuleConfiguration that contains all bindings</param>
         public static void LoadModuleConfiguration(IBlueprint config)
         {
-            
+
             HasExternalIoc = config is IContainerSetup;
             KernelFactory.LoadContainer(config);
             LoadKernel();
@@ -283,21 +214,6 @@ namespace Stardust.Nucleus
             LoadModuleConfiguration(new T());
         }
 
-        /// <summary>
-        /// Loads the binding and IOC bridge based on configuration settings. There is no need to call this manually as it is run in pre app start.
-        /// You can still add more binding files in you app start method. Even change the settings loaded in this. But be carefull not to brake the SOLID principles by modifying behavior at runtime.
-        /// </summary>
-        //public static void LoadModuleConfiguration()
-        //{
-        //    var c = Configuration.ConfigurationHelper.Configurations.Value;
-        //    if (c.IocBridgeFactory != null)
-        //        KernelFactory.LoadContainer((IContainerSetup)ObjectFactory.Createinstance(c.IocBridgeFactory, new object[0]));
-
-
-        //    if (c.BindingConfigurationType != null)
-        //        LoadModuleConfiguration((IBlueprint)ObjectFactory.Createinstance(c.BindingConfigurationType, new object[0]));
-        //}
-
         public static void RemoveAll()
         {
             GetConfigurator().RemoveAll();
@@ -306,7 +222,7 @@ namespace Stardust.Nucleus
         /// <summary>
         /// Revert to the default activator
         /// </summary>
-        public static void ResetActivator()
+        internal static void ResetActivator()
         {
             ActivatorFactory.ResetActivator();
         }
@@ -321,142 +237,9 @@ namespace Stardust.Nucleus
         }
 
 
-        public static IEnumerable<T> ActivateAll<T>()
-        {
-            return ResolverKernel.GetServices<T>();
-        }
-
-        public static object Activate(Type serviceType, string key)
-        {
-            return ResolverKernel.GetService(serviceType, key);
-        }
-
-        public static object Activate(Type serviceType)
-        {
-            return ResolverKernel.GetService(serviceType, TypeLocatorNames.DefaultName);
-        }
-
-        public static IEnumerable<object> GetAllInstances(Type serviceType)
-        {
-            return ResolverKernel.GetServices(serviceType);
-        }
-
-        public static IEnumerable<TService> GetAllInstances<TService>()
-        {
-            return ResolverKernel.GetServices<TService>();
-        }
-
-        public static Dictionary<string, object> GetAllInstancesNamed(Type serviceType)
-        {
-            return ResolverKernel.GetServicesNamed(serviceType);
-        }
-
-        public static Dictionary<string, TService> GetAllInstancesNamed<TService>()
-        {
-            return ResolverKernel.GetServicesNamed<TService>(null);
-        }
-
-        public static Dictionary<string, TService> GetAllInstancesNamed<TService>(string exceptWithName)
-        {
-            return ResolverKernel.GetServicesNamed<TService>(exceptWithName);
-        }
-
-        /// <summary>
-        /// Creates a new nub OLM scope
-        /// </summary>
-        /// <param name="scope">the scope to extend</param>
-        /// <returns></returns>
-        public static IExtendedScopeProvider BeginExtendedScope(Scope scope)
-        {
-            return ResolverKernel.BeginExtendedScope(ContainerFactory.Current(new ContextProviders.ScopeContext(ResolverKernel)).ExtendScope(scope));
-        }
-
         public static IDependencyResolver CreateScopedResolver()
         {
             return KernelFactory.CreateResolver(ConfigurationKernel);
         }
     }
-
-    public static class BinderExtensions
-    {
-        public static void ToAssembly<T>(this IBindContext<T> self, string assemblyName, Action<IScopeContext> scopeHandler = null)
-        {
-            var assembly = Assembly.Load(assemblyName);
-            self.ToAssembly(assembly, scopeHandler);
-        }
-
-        public static void ToAssembly<T>(this IBindContext<T> self, Assembly assembly, Action<IScopeContext> scopeHandler = null)
-        {
-            foreach (var definedType in assembly.DefinedTypes)
-            {
-                if (!definedType.Implements(typeof(T))) continue;
-                var attrib = definedType.GetAttribute<ImplementationKeyAttribute>();
-                IScopeContext scope;
-                if (attrib != null) scope = self.To(definedType, attrib.Name);
-                else scope = self.To(definedType);
-                if (scopeHandler != null) scopeHandler(scope);
-            }
-        }
-
-        public static IConfigurator LoadAssembly(this IConfigurator self, string name)
-        {
-            Assembly.Load(new AssemblyName(name));
-            return self;
-        }
-
-        public static IConfigurator LoadAssemblyFromPath(this IConfigurator self, string path)
-        {
-            Assembly.LoadFrom(path);
-            return self;
-        }
-
-        /// <summary>
-        /// Resolves all types in the loaded assemblies
-        /// </summary>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static IConfigurator ResolveAll(this IConfigurator self, bool onlyInterfacesOrAbstracts = true, Action<IScopeContext> scopeHandler = null)
-        {
-
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                self.ResolveAssembly(onlyInterfacesOrAbstracts, assembly, scopeHandler);
-            }
-            return self;
-        }
-
-        public static IConfigurator ResolveAssembly(this IConfigurator self, bool onlyInterfacesOrAbstracts, string assemblyName, Action<IScopeContext> scopeHandler = null)
-        {
-            var assembly = Assembly.Load(new AssemblyName(assemblyName));
-            return self.ResolveAssembly(onlyInterfacesOrAbstracts, assembly);
-        }
-
-        public static IConfigurator ResolveAssembly(this IConfigurator self, bool onlyInterfacesOrAbstracts, Assembly assembly, Action<IScopeContext> scopeHandler = null)
-        {
-            if (scopeHandler == null) scopeHandler = a => { a.SetTransientScope(); };
-            foreach (var definedType in assembly.DefinedTypes)
-            {
-                if (onlyInterfacesOrAbstracts && !definedType.IsConcreteType())
-                {
-                    continue;
-                }
-                var name = definedType.GetAttribute<ImplementationKeyAttribute>() != null ? definedType.GetAttribute<ImplementationKeyAttribute>().Name : TypeLocatorNames.DefaultName;
-                var implementations = FindImplementations(definedType);
-                foreach (var implementation in implementations)
-                {
-                    scopeHandler(definedType.IsGenericTypeDefinition ? self.BindAsGeneric(definedType).To(implementation, name) : self.Bind(definedType).To(definedType, name));
-                }
-            }
-            return self;
-        }
-
-        private static IEnumerable<TypeInfo> FindImplementations(TypeInfo definedType)
-        {
-            return from a in AppDomain.CurrentDomain.GetAssemblies()
-                   from t in a.DefinedTypes
-                   where t.Implements(definedType) && t.IsConcreteType()
-                   select t;
-        }
-    }
-
 }

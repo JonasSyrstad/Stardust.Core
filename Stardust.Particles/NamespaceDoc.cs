@@ -28,7 +28,7 @@
 namespace Stardust.Particles
 {
     /// <summary> 
-    /// The <see cref="Stardust.Core.CrossCutting"/> namespace contains extentions and helpers that is intended to be used in all layers of an application.
+    /// The <see cref="Stardust.Particles"/> namespace contains extentions and helpers that is intended to be used in all layers of an application.
     /// </summary> 
     [System.Runtime.CompilerServices.CompilerGenerated]
     class NamespaceDoc

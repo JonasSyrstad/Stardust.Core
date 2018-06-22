@@ -97,8 +97,8 @@
     <Reference Include="Stardust.Nucleus, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stardust.Nucleus.4.1.0-pre0005\lib\netstandard2.0\Stardust.Nucleus.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Particles, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.4.1.0-pre001\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+    <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Particles.5.0.0\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

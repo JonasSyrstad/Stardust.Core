@@ -71,8 +71,8 @@
     <Reference Include="Stardust.Interstellar.Rest.Annotations, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Stardust.Interstellar.Rest.Annotations.2.1.0-pre004\lib\netstandard2.0\Stardust.Interstellar.Rest.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Particles, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.4.1.0-pre001\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+    <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Particles.5.0.0\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
