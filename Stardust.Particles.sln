@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wtf_loader", "wtf_loader\wt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nucleus.Tests", "Stardust.Nucleus.Tests\Stardust.Nucleus.Tests.csproj", "{FBFE6756-C85B-4135-B117-B06536D02455}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Abstractions", "Stardust.Abstractions\Stardust.Abstractions.csproj", "{342079C5-9625-41A4-BF0E-8603778D6BDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{FBFE6756-C85B-4135-B117-B06536D02455}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBFE6756-C85B-4135-B117-B06536D02455}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBFE6756-C85B-4135-B117-B06536D02455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342079C5-9625-41A4-BF0E-8603778D6BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342079C5-9625-41A4-BF0E-8603778D6BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342079C5-9625-41A4-BF0E-8603778D6BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342079C5-9625-41A4-BF0E-8603778D6BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

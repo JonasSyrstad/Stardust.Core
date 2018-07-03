@@ -10,20 +10,8 @@ namespace Stardust.Nucleus
     public interface IDependencyResolver : IDisposable, Particles.Abstractions.IDependencyResolver
     {
         object GetInstance(Type type, Scope scope);
-        T GetService<T>();
-
-        T GetService<T>(Action<T> initializer);
-
-        T GetService<T>(string named);
-
+        
         T GetService<T>(string named, Action<T> initializer);
-
-
-        T[] GetServices<T>();
-
-        object GetService(Type serviceType, string named);
-
-        IEnumerable<object> GetServices(Type serviceType);
 
         IExtendedScopeProvider BeginExtendedScope(IExtendedScopeProvider scope);
 

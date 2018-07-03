@@ -12,6 +12,7 @@ namespace Stardust.Nucleus.Web
 
         public ServiceLocator(IDependencyResolver resolver)
         {
+            if (resolver == null) throw new NullReferenceException("resolver is null.....");
             _resolver = resolver;
         }
 
@@ -22,7 +23,7 @@ namespace Stardust.Nucleus.Web
 
         public object GetService(Type serviceType)
         {
-            return _resolver.GetService(serviceType,"default");
+            return _resolver?.GetService(serviceType, "default");
         }
 
         public IEnumerable<T> GetServices<T>()

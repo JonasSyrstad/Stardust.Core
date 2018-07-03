@@ -1,48 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Web;
 using System.Web.Http.Dependencies;
+using Stardust.Particles;
 
 namespace Stardust.Nucleus.Web
 {
     internal class StardustDependencyResolver : System.Web.Http.Dependencies.IDependencyResolver, System.Web.Mvc.IDependencyResolver
     {
-        private IDependencyResolver _resolver;
 
-        public StardustDependencyResolver()
-        {
-            _resolver = Resolver.CreateScopedResolver();
-        }
+
         public IDependencyScope BeginScope()
         {
-            return new StardustDependencyScope(Resolver.CreateScopedResolver());
+            var resolver = Resolver.CreateScopedResolver();
+            if (HttpContext.Current != null && !(HttpContext.Current.Items["resolver"] is IDependencyResolver))
+                HttpContext.Current.Items.Add("resolver", resolver);
+            resolver.GetService<ILogging>()?.DebugMessage("Starting dependency scope");
+            return new StardustDependencyScope(resolver);
         }
 
         public object GetService(Type serviceType)
         {
-            return _resolver.GetService(serviceType, "default");
+            IDependencyResolver resolver;
+            if (HttpContext.Current != null && HttpContext.Current.Items.Contains("resolver"))
+            {
+                resolver = HttpContext.Current.Items["resolver"] as IDependencyResolver ??
+                           Resolver.CreateScopedResolver();
+            }
+            else resolver = Resolver.CreateScopedResolver();
+            if (HttpContext.Current != null && !(HttpContext.Current.Items["resolver"] is IDependencyResolver))
+                HttpContext.Current.Items.Add("resolver", resolver);
+            resolver.GetService<ILogging>()?.DebugMessage($"Resolving service {serviceType.FullName}");
+            return resolver.GetService(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return _resolver.GetServices(serviceType);
+            IDependencyResolver resolver;
+            if (HttpContext.Current.Items.Contains("resolver"))
+            {
+                resolver = HttpContext.Current.Items["resolver"] as IDependencyResolver ??
+                           Resolver.CreateScopedResolver();
+            }
+            else resolver = Resolver.CreateScopedResolver();
+            if (!(HttpContext.Current.Items["resolver"] is IDependencyResolver))
+                HttpContext.Current.Items.Add("resolver", resolver);
+            resolver.GetService<ILogging>()?.DebugMessage($"Resolving services {serviceType.FullName}");
+            return resolver.GetServices(serviceType);
         }
+
 
         public void Dispose()
         {
-            Dispose(true);
         }
 
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-                GC.SuppressFinalize(this);
-
-        }
-
-        ~StardustDependencyResolver()
-        {
-            Dispose(false);
-        }
     }
 }

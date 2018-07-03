@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Stardust.Particles.Abstractions
 {
-    public interface IDependencyResolver
+    public interface IDependencyResolver : IServiceProvider
     {
-        object GetService(Type serviceType);
         T GetService<T>();
         T GetService<T>(Action<T> initializer);
 

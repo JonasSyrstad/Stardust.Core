@@ -41,7 +41,7 @@ namespace Stardust.Nucleus.Internals
         private readonly IConfigurationKernel ConfigurationKernel;
 
         internal BindContext(IConfigurationKernel configurationKernel, Type type, IDependencyResolver resolver, bool useUnboundGeneric = false)
-            : this(configurationKernel, type, useUnboundGeneric,  resolver, new Type[] { })
+            : this(configurationKernel, type, useUnboundGeneric, resolver, new Type[] { })
         {
 
         }
@@ -65,7 +65,7 @@ namespace Stardust.Nucleus.Internals
         /// </summary>
         public IScopeContext To(Type type, string identifier = "default")
         {
-            var existingBinding = ConfigurationKernel.Resolve(ConcreteType, identifier,Resolver, true);
+            var existingBinding = ConfigurationKernel.Resolve(ConcreteType, identifier, Resolver, true);
             if (existingBinding.IsInstance() && !existingBinding.IsNull) return existingBinding;
             existingBinding = type.ConvertToContext(new ContextProviders.ScopeContext(Resolver));
             ConfigurationKernel.Bind(ConcreteType, existingBinding, identifier);
@@ -82,13 +82,13 @@ namespace Stardust.Nucleus.Internals
 
     internal sealed class BindContext<T> : BindContext, IBindContext<T>
     {
-        internal BindContext(IConfigurationKernel configurationKernel,IDependencyResolver resolver)
-            : base(configurationKernel, typeof(T),resolver)
+        internal BindContext(IConfigurationKernel configurationKernel, IDependencyResolver resolver)
+            : base(configurationKernel, typeof(T), resolver)
         {
         }
 
         internal BindContext(IConfigurationKernel configurationKernel, IDependencyResolver resolver, params Type[] genericParameters)
-            : base(configurationKernel, typeof(T), false,resolver, genericParameters)
+            : base(configurationKernel, typeof(T), false, resolver, genericParameters)
         {
         }
 
@@ -157,16 +157,16 @@ namespace Stardust.Nucleus.Internals
 
         public IScopeContext ToConstructor(Func<IDependencyResolver, object> creator, string identifier)
         {
-            return ToConstructor(creator(Resolver).GetType(), creator, identifier);
+            return ToConstructor(creator(Resolver)?.GetType(), creator, identifier);
         }
         public IScopeContext ToConstructor(Type type, Func<IDependencyResolver, object> creator)
         {
-            return ToConstructor(type,creator, TypeLocatorNames.DefaultName);
+            return ToConstructor(type, creator, TypeLocatorNames.DefaultName);
         }
 
-        public IScopeContext ToConstructor(Type type,Func<IDependencyResolver, object> creator, string identifier)
+        public IScopeContext ToConstructor(Type type, Func<IDependencyResolver, object> creator, string identifier)
         {
-            var scope = (ScopeContext)To(type, identifier);
+            var scope = (ScopeContext)To(type ?? typeof(T), identifier);
             scope.CreatorMethod = creator;
             return scope;
         }

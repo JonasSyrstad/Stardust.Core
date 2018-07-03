@@ -38,7 +38,7 @@ namespace Stardust.Nucleus.ContainerIntegration
 
         public T GetService<T>()
         {
-            return FindServiceImplementation<T>(TypeLocatorNames.DefaultName).Activate();
+            return GetService<T>("default");
         }
 
         public T GetService<T>(Action<T> initializer)
@@ -48,7 +48,9 @@ namespace Stardust.Nucleus.ContainerIntegration
 
         public T GetService<T>(string named)
         {
-            return FindServiceImplementation<T>(named).Activate();
+            var result = GetService(typeof(T), named);
+            if (result == null) return default(T);
+            return (T)result;
         }
 
         public T GetService<T>(string named, Action<T> initializer)

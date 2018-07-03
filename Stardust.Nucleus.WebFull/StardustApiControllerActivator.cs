@@ -8,34 +8,41 @@ using System.Web.Routing;
 
 namespace Stardust.Nucleus.Web
 {
-    public class StardustControllerActivator : IControllerActivator
+    public class StardustControllerActivator : IControllerActivator, IHttpControllerActivator
     {
+        public static Action<IServiceProvider, HttpContextAccessor, Type> OnCreatingController;
+        public static Action<IServiceProvider, HttpContextAccessor, object> OnControllerCreated;
         public IController Create(RequestContext requestContext, Type controllerType)
         {
+
+            return CreateInternal<IController>(controllerType, HttpContext.Current);
+        }
+
+        private T CreateInternal<T>(Type controllerType, HttpContext requestContextHttpContext)
+        {
             IDependencyResolver resolver;
-            if (!requestContext.HttpContext.Items.Contains("resolver"))
-                resolver = Resolver.CreateScopedResolver();
-            else
-                resolver = (IDependencyResolver)requestContext.HttpContext.Items["resolver"];
-            requestContext.HttpContext.Items.Add("resolver", resolver);
-            var controller = (IController)resolver.GetInstance(controllerType, Scope.Context);
+            {
+                if (requestContextHttpContext.Items.Contains("resolver"))
+                {
+                    resolver = requestContextHttpContext.Items["resolver"] as IDependencyResolver ??
+                               Resolver.CreateScopedResolver();
+                }
+                else resolver = Resolver.CreateScopedResolver();
+            }
+            if (!(requestContextHttpContext.Items["resolver"] is IDependencyResolver))
+                HttpContext.Current.Items.Add("resolver", resolver);
+            var context = resolver.GetService<HttpContextAccessor>();   
+            context.SetContext(requestContextHttpContext);
+            OnCreatingController?.Invoke(resolver, context, controllerType);
+            var controller = (T)controllerType.Activate(Scope.Context, resolver);
+            OnControllerCreated?.Invoke(resolver, context, controller);
             return controller;
         }
-    }
-    public class StardustApiControllerActivator : IHttpControllerActivator
-    {
-        IHttpController IHttpControllerActivator.Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
-        {
-            return Create(request, controllerDescriptor, controllerType);
-        }
-        private IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
-        {
-            var resolver = HttpContext.Current.Items["resolver"] as IDependencyResolver ?? Resolver.CreateScopedResolver();
-            HttpContext.Current.Items.Add("resolver", resolver);
-            var controller = (IHttpController)controllerType.Activate(Scope.Context, resolver);
-            return controller;
 
+        public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
+        {
+            
+            return CreateInternal<IHttpController>(controllerType, HttpContext.Current);
         }
-
     }
 }

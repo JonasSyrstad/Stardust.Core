@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Dependencies;
-using Stardust.Nucleus.ContextProviders;
 using Stardust.Particles;
 using IDependencyResolver = Stardust.Nucleus.IDependencyResolver;
 
@@ -11,10 +10,12 @@ namespace Stardust.Nucleus.Web
     {
         private IDependencyResolver ScopeContainer;
 
+        public ILogging Logging { get; }
 
         public StardustDependencyScope(IDependencyResolver scopeContainer)
         {
             ScopeContainer = scopeContainer;
+            Logging = scopeContainer.GetService<ILogging>();
         }
 
         private void Dispose(bool disposing)
@@ -40,12 +41,14 @@ namespace Stardust.Nucleus.Web
 
         public object GetService(Type serviceType)
         {
-            return Resolver.Activate(serviceType);
+            Logging?.DebugMessage($"Resolving service {serviceType.FullName}");
+            return ScopeContainer.GetService(serviceType);
         }
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return Resolver.GetAllInstances(serviceType);
+            Logging?.DebugMessage($"Resolving services {serviceType.FullName}");
+            return ScopeContainer.GetServices(serviceType);
         }
     }
 }
