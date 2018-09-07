@@ -25,14 +25,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-using Stardust.Nucleus.ContainerIntegration;
-using Stardust.Nucleus.ContextProviders;
-using Stardust.Nucleus.Internals;
 using Stardust.Nucleus.ObjectActivator;
 using Stardust.Nucleus.TypeResolver;
 using Stardust.Particles;
+using System;
+using System.Collections.Generic;
 using ScopeContext = Stardust.Nucleus.Internals.ScopeContext;
 
 // ReSharper disable SuspiciousTypeConversion.Global
@@ -194,7 +191,7 @@ namespace Stardust.Nucleus
             HasExternalIoc = config is IContainerSetup;
             KernelFactory.LoadContainer(config);
             LoadKernel();
-            GetConfigurator().Bind<ILogging>().To(config.LoggingType).SetSingletonScope();
+            GetConfigurator().Bind<ILogging>().To(config.LoggingType).SetRequestResponseScope();
             config.Bind(GetConfigurator());
             LoggingExtentions.SetLogger(config.LoggingType);
         }

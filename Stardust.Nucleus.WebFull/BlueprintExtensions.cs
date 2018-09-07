@@ -1,9 +1,16 @@
 using Stardust.Interstellar.Rest.Client;
+using Stardust.Interstellar.Rest.Service;
 
 namespace Stardust.Nucleus.Web
 {
     public static class BlueprintExtensions
     {
+        public static IConfigurator DisableVersionHeader(this IConfigurator configuration)
+        {
+            ServiceFactory.DisableStardustVersion();
+            return configuration;
+        }
+
         public static IScopeContext ToServiceProxy<T>(this IBindContext<T> bindContext, string baseUrl)
         {
             return bindContext.ToConstructor(ProxyFactory.CreateProxy<T>(), s => new ServiceLocator(s).CreateRestClient<T>(baseUrl));

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>5.0.2</Version>
+    <Version>5.0.3</Version>
     <Copyright>Copyright © Stardust 2018</Copyright>
     <PackageLicenseUrl>http://stardustframework.com/license</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/JonasSyrstad/Stardust.Nucleus</PackageProjectUrl>

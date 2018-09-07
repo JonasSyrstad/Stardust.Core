@@ -76,8 +76,8 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
@@ -88,17 +88,17 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Interstellar.Rest, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Interstellar.Rest.3.0.0.5\lib\netstandard2.0\Stardust.Interstellar.Rest.dll</HintPath>
+    <Reference Include="Stardust.Interstellar.Rest, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Interstellar.Rest.3.1.4\lib\netstandard2.0\Stardust.Interstellar.Rest.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Interstellar.Rest.Annotations, Version=2.0.0.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Interstellar.Rest.Annotations.2.0.0.3\lib\netstandard2.0\Stardust.Interstellar.Rest.Annotations.dll</HintPath>
+    <Reference Include="Stardust.Interstellar.Rest.Annotations, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Interstellar.Rest.Annotations.3.1.0\lib\netstandard2.0\Stardust.Interstellar.Rest.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Stardust.Nucleus, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Nucleus.5.0.0\lib\netstandard2.0\Stardust.Nucleus.dll</HintPath>
+    <Reference Include="Stardust.Nucleus, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Nucleus.5.0.2\lib\netstandard2.0\Stardust.Nucleus.dll</HintPath>
     </Reference>
     <Reference Include="Stardust.Particles, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stardust.Particles.5.0.0\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
+      <HintPath>..\packages\Stardust.Particles.5.0.1\lib\netstandard2.0\Stardust.Particles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

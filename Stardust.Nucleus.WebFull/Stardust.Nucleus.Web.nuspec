@@ -2,7 +2,7 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata>
     <id>Stardust.Nucleus.Web</id>
-    <version>3.1.1</version>
+    <version>3.1.2</version>
     <title>Stardust.Nucleus.Web</title>
     <authors>Stardust</authors>
     <description>mvc and webapi integration of Stardust.Nucleus</description>
@@ -31,8 +31,8 @@
         <dependency id="Microsoft.AspNet.WebPages" version="3.2.3" />
         <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
         <dependency id="Newtonsoft.Json" version="10.0.3" />
-        <dependency id="Stardust.Interstellar.Rest" version="3.1.1" />
-        <dependency id="Stardust.Interstellar.Rest.Service" version="3.1.1" />
+        <dependency id="Stardust.Interstellar.Rest" version="3.1.4" />
+        <dependency id="Stardust.Interstellar.Rest.Service" version="3.1.9" />
         <dependency id="Stardust.Interstellar.Rest.Annotations" version="3.1.0" />
         <dependency id="Stardust.Nucleus" version="5.0.2" />
         <dependency id="Stardust.Particles" version="5.0.1" />
